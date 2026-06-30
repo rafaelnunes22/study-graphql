@@ -21,15 +21,27 @@ module.exports = {
     },
     excluirUsuario(_,{id}) {
         const indexUsuario = usuarios.findIndex(item => item.id === id);
-        console.log(indexUsuario)
-        if(!!indexUsuario) {
+
+        if(indexUsuario < 0) {
             throw new Error("Id inexistente.")
         }
 
         const usuarioExcluido = usuarios.splice(indexUsuario,1);
-        console.log(usuarioExcluido)
-
 
         return usuarioExcluido[0];
+    },
+    alterarUsuario(_, args) {
+        const indexUsuario = usuarios.findIndex(item => item.id === args.id);
+
+        if(!indexUsuario) {
+            throw new Error("Id inexistente.")
+        }
+
+        const usuarioAlterado = {...usuarios[indexUsuario], ...args};
+
+        usuarios.splice(indexUsuario, 1, usuarioAlterado);
+
+        return usuarioAlterado;
+
     }
 }

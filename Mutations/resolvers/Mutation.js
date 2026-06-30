@@ -18,5 +18,18 @@ module.exports = {
 
         usuarios.push(novo);
         return novo;
+    },
+    excluirUsuario(_,{id}) {
+        const indexUsuario = usuarios.findIndex(item => item.id === id);
+        console.log(indexUsuario)
+        if(!!indexUsuario) {
+            throw new Error("Id inexistente.")
+        }
+
+        const usuarioExcluido = usuarios.splice(indexUsuario,1);
+        console.log(usuarioExcluido)
+
+
+        return usuarioExcluido[0];
     }
 }

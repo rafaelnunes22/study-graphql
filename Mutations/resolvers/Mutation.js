@@ -50,14 +50,14 @@ module.exports = {
 
         return usuarioExcluido[0];
     },
-    alterarUsuario(_, args) {
-        const indexUsuario = usuarios.findIndex(item => item.id === args.id);
+    alterarUsuario(_, {filtro, dados}) {
+        const indexUsuario = indiceUsuario(filtro);
 
         if(!indexUsuario) {
-            throw new Error("Id inexistente.")
+            throw new Error("Usuário inexistente.")
         }
 
-        const usuarioAlterado = {...usuarios[indexUsuario], ...args};
+        const usuarioAlterado = {...usuarios[indexUsuario], ...dados};
 
         usuarios.splice(indexUsuario, 1, usuarioAlterado);
 

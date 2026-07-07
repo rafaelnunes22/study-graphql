@@ -1,14 +1,20 @@
 
 // uuid = Universally Unique Identifier
 let id = 1;
+let perfilId = 1;
+
 
 function proximoId() {
     return id++;
 }
 
+function proximoPerfilId() {
+    return perfilId++;
+}
+
 const perfis = [
-    { id: 1, nome: 'comum' },
-    { id: 2, nome: 'administrador' }
+    { id: proximoPerfilId(), nome: 'comum' },
+    { id: proximoPerfilId(), nome: 'administrador' }
 ]
 
 const usuarios = [{
@@ -34,4 +40,4 @@ const usuarios = [{
     status: 'BLOQUEADO'
 }]
 
-module.exports = { usuarios, perfis, proximoId}
+module.exports = { usuarios, perfis, proximoId, proximoPerfilId}
